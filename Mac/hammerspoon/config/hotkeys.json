@@ -1,0 +1,84 @@
+{
+    "focusNextDisplay": {
+        "module": "display_focus",
+        "function": "focusNextDisplay",
+        "modifiers": ["ctrl", "alt", "cmd"],
+        "key": "Right"
+    },
+    "focusPrevDisplay": {
+        "module": "display_focus",
+        "function": "focusPrevDisplay",
+        "modifiers": ["ctrl", "alt", "cmd"],
+        "key": "Left"
+    },
+
+    "winTopLeft": {
+        "module": "window_management",
+        "function": "topLeft",
+        "modifiers": ["ctrl","alt","cmd"],
+        "key": "U"
+    },
+    "winTopRight": {
+        "module": "window_management",
+        "function": "topRight",
+        "modifiers": ["ctrl","alt","cmd"],
+        "key": "I"
+    },
+    "winBottomLeft": {
+        "module": "window_management",
+        "function": "bottomLeft",
+        "modifiers": ["ctrl","alt","cmd"],
+        "key": "J"
+    },
+    "winBottomRight": {
+        "module": "window_management",
+        "function": "bottomRight",
+        "modifiers": ["ctrl","alt","cmd"],
+        "key": "K"
+    },
+
+    "winLeftHalf": {
+        "module": "window_management",
+        "function": "leftHalf",
+        "modifiers": ["ctrl","alt","cmd"],
+        "key": "ò"
+    },
+    "winRightHalf": {
+        "module": "window_management",
+        "function": "rightHalf",
+        "modifiers": ["ctrl","alt","cmd"],
+        "key": "ù"
+    },
+    "winTopHalf": {
+        "module": "window_management",
+        "function": "topHalf",
+        "modifiers": ["ctrl","alt","cmd"],
+        "key": "è"
+    },
+    "winBottomHalf": {
+        "module": "window_management",
+        "function": "bottomHalf",
+        "modifiers": ["ctrl","alt","cmd"],
+        "key": "à"
+    },
+
+    "winFull": {
+        "module": "window_management",
+        "function": "fullScreen",
+        "modifiers": ["ctrl","alt","cmd"],
+        "key": "Return"
+    },
+
+    "winMoveNextScreen": {
+        "module": "window_management",
+        "function": "moveToNextScreen",
+        "modifiers": ["ctrl","alt","cmd"],
+        "key": "PageDown"
+    },
+    "winMovePrevScreen": {
+        "module": "window_management",
+        "function": "moveToPrevScreen",
+        "modifiers": ["ctrl","alt","cmd"],
+        "key": "PageUp"
+    }
+}

@@ -1,0 +1,11 @@
+Include /Users/federico/.colima/ssh_config
+
+Host github.com
+    HostName github.com
+    User git
+    IdentityAgent SSH_AUTH_SOCK
+
+Host 10.16.2.46
+    HostName 10.16.2.46
+    User fforzano
+    IdentityAgent SSH_AUTH_SOCK

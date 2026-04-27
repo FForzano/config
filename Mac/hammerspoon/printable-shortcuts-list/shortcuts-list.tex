@@ -1,0 +1,69 @@
+% !TeX program = xelatex
+\documentclass[a4paper,landscape,10pt]{article}
+\usepackage{geometry}
+\geometry{a4paper,landscape,margin=1.5cm}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{fontspec}
+\setmainfont{Arial}
+\newfontfamily\macsymbols{Apple Symbols}
+\setlength{\parindent}{0pt}
+\titleformat{\section}{\normalsize\bfseries}{}{0em}{}
+\titlespacing*{\section}{0pt}{0.7em}{0.5em}
+
+\begin{document}
+
+\section*{Windows Management}
+\begin{tabular}{|p{0.12\linewidth}|p{0.15\linewidth}||p{0.12\linewidth}|p{0.15\linewidth}||p{0.12\linewidth}|p{0.15\linewidth}|}
+\hline
+	\textbf{Shortcut} & \textbf{Description} & \textbf{Shortcut} & \textbf{Description} & \textbf{Shortcut} & \textbf{Description} \\
+\hline
+{\macsymbols ⌃} + {\macsymbols ⌥} + {\macsymbols ⌘} + {\macsymbols →} & Focus next display & {\macsymbols ⌃} + {\macsymbols ⌥} + {\macsymbols ⌘} + {\macsymbols ←} & Focus previous display & {\macsymbols ⌃} + {\macsymbols ⌥} + {\macsymbols ⌘} + U & Move window to top left \\
+{\macsymbols ⌃} + {\macsymbols ⌥} + {\macsymbols ⌘} + I & Move window to top right & {\macsymbols ⌃} + {\macsymbols ⌥} + {\macsymbols ⌘} + J & Move window to bottom left & {\macsymbols ⌃} + {\macsymbols ⌥} + {\macsymbols ⌘} + K & Move window to bottom right \\
+{\macsymbols ⌃} + {\macsymbols ⌥} + {\macsymbols ⌘} + ò & Move window to left half & {\macsymbols ⌃} + {\macsymbols ⌥} + {\macsymbols ⌘} + ù & Move window to right half & {\macsymbols ⌃} + {\macsymbols ⌥} + {\macsymbols ⌘} + è & Move window to top half \\
+{\macsymbols ⌃} + {\macsymbols ⌥} + {\macsymbols ⌘} + à & Move window to bottom half & {\macsymbols ⌃} + {\macsymbols ⌥} + {\macsymbols ⌘} + {\macsymbols ↩} & Maximize window & {\macsymbols ⌃} + {\macsymbols ⌥} + {\macsymbols ⌘} + PgDn & Move window to next screen \\
+{\macsymbols ⌃} + {\macsymbols ⌥} + {\macsymbols ⌘} + PgUp & Move window to prev screen & {\macsymbols ⌘} + {\macsymbols ⇥} & Switch to next app & {\macsymbols ⌘} + H & Hide current app \\
+{\macsymbols ⌘} + M & Minimize window & {\macsymbols ⌘} + W & Close window/tab & {\macsymbols ⌘} + Q & Quit app \\
+{\macsymbols ⌘} + Space & Spotlight search & {\macsymbols ⌃} + {\macsymbols ↑} & Mission Control & {\macsymbols ⌃} + {\macsymbols ↓} & App Exposé \\
+{\macsymbols ⌃} + {\macsymbols ←}/{\macsymbols →} & Switch desktop (Space) & {\macsymbols ⌘} + {\macsymbols ⇧} + 3 & Screenshot (full screen) & {\macsymbols ⌘} + {\macsymbols ⇧} + 4 & Screenshot (selection) \\
+\hline
+\end{tabular}
+
+\section*{Ghostty}
+\begin{tabular}{|p{0.12\linewidth}|p{0.15\linewidth}||p{0.12\linewidth}|p{0.15\linewidth}||p{0.12\linewidth}|p{0.15\linewidth}|}
+\hline
+	\textbf{Shortcut} & \textbf{Description} & \textbf{Shortcut} & \textbf{Description} & \textbf{Shortcut} & \textbf{Description} \\
+\hline
+{\macsymbols ⌘} + {\macsymbols ⇧} + T & New tab & {\macsymbols ⌘} + {\macsymbols ⇧} + W & Close tab & {\macsymbols ⌘} + 1-9 & Switch to tab N \\
+{\macsymbols ⌘} + {\macsymbols ⌥} + {\macsymbols ←} & tab & {\macsymbols ⌘} + {\macsymbols ⌥} + {\macsymbols →} & Next tab & {\macsymbols ⌘} + {\macsymbols ↩} & Fullscreen \\
+{\macsymbols ⌘} + {\macsymbols ⇧} + C & Copy selection & {\macsymbols ⌘} + {\macsymbols ⇧} + V & Paste & {\macsymbols ⌘} + K & Clear scrollback \\
+{\macsymbols ⌘} + F & Find in terminal & {\macsymbols ⌘} + + & Increase font size & {\macsymbols ⌘} + - & Decrease font size \\
+{\macsymbols ⌘} + 0 & Reset font size & {\macsymbols ⌘} + {\macsymbols ⇧} + N & New window & {\macsymbols ⌘} + D & Split pane horizontally \\
+{\macsymbols ⌘} + {\macsymbols ⇧} + D & Split pane vertically & {\macsymbols ⌘} + {\macsymbols ⌥} + D & Close current pane & {\macsymbols ⌘} + {\macsymbols ⌥} + {\macsymbols ↑} & Focus pane above \\
+{\macsymbols ⌘} + {\macsymbols ⌥} + {\macsymbols ↓} & Focus pane below & {\macsymbols ⌘} + {\macsymbols ⌥} + {\macsymbols ←} & Focus pane left & {\macsymbols ⌘} + {\macsymbols ⌥} + {\macsymbols →} & Focus pane right \\
+{\macsymbols ⌘} + [ & tab & {\macsymbols ⌘} + ] & Next tab & {\macsymbols ⌘} + L & Show command palette \\
+{\macsymbols ⌘} + {\macsymbols ⇧} + P & Command palette (alternative) & & & & \\
+\hline
+\end{tabular}
+
+\section*{VSCode}
+\begin{tabular}{|p{0.12\linewidth}|p{0.15\linewidth}||p{0.12\linewidth}|p{0.15\linewidth}||p{0.12\linewidth}|p{0.15\linewidth}|}
+\hline
+\textbf{Shortcut} & \textbf{Description} & \textbf{Shortcut} & \textbf{Description} & \textbf{Shortcut} & \textbf{Description} \\
+\hline
+{\macsymbols ⌘} + P & Quick open file & {\macsymbols ⌘} + {\macsymbols ⇧} + P & Command palette & {\macsymbols ⌘} + B & Toggle sidebar \\
+{\macsymbols ⌘} + J & Toggle panel & {\macsymbols ⌘} + {\macsymbols ⇧} + E & Explorer view & {\macsymbols ⌘} + {\macsymbols ⇧} + F & Search all files \\
+{\macsymbols ⌘} + F & Search in file & {\macsymbols ⌘} + {\macsymbols ⇧} + X & Extensions view & {\macsymbols ⌘} + ` & Toggle terminal \\
+{\macsymbols ⌘} + W & Close tab & {\macsymbols ⌘} + \textbackslash & Split editor & {\macsymbols ⌘} + 1/2/3 & Focus editor group \\
+{\macsymbols ⌘} + K, {\macsymbols ⌘} + S & Keyboard shortcuts & {\macsymbols ⌘} + {\macsymbols ⇧} + L & Select all occurrences & {\macsymbols ⌥} + ↑/↓ & Move line up/down \\
+{\macsymbols ⌥} + {\macsymbols ⇧} + ↑/↓ & Copy line up/down & {\macsymbols ⌘} + / & Toggle line comment & {\macsymbols ⌘} + F & Find \\
+{\macsymbols ⌘} + H & Replace & {\macsymbols ⌘} + G & Next match & {\macsymbols ⌘} + {\macsymbols ⇧} + G & Previous match \\
+{\macsymbols ⌘} + ↑ & Go to top & {\macsymbols ⌘} + ↓ & Go to bottom & F8 & Next error \\
+{\macsymbols ⇧} + F8 & Previous error & {\macsymbols ⌘} + Z & Undo & {\macsymbols ⌘} + {\macsymbols ⇧} + Z & Redo \\
+{\macsymbols ⌘} + S & Save & & & & \\
+\hline
+\end{tabular}
+
+\end{document}
