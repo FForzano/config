@@ -1,7 +1,2 @@
 Include ~/.colima/ssh_config
 Include ~/.ssh/config.private
-
-Host github.com
-    HostName github.com
-    User git
-    IdentityAgent SSH_AUTH_SOCK
