@@ -1,0 +1,86 @@
+{
+  "components": [
+    {
+      "id": "zsh",
+      "name": "Zsh",
+      "description": "Shell config (zshrc + Powerlevel10k theme)",
+      "os": ["macos", "linux"],
+      "actions": [
+        { "type": "link", "src": "Mac/zshrc",    "dst": "~/.zshrc"    },
+        { "type": "link", "src": "Mac/p10k.zsh", "dst": "~/.p10k.zsh" }
+      ]
+    },
+    {
+      "id": "ghostty",
+      "name": "Ghostty",
+      "description": "Terminal emulator configuration",
+      "os": ["macos"],
+      "actions": [
+        { "type": "link", "src": "Mac/ghostty/config", "dst": "~/Library/Application Support/com.mitchellh.ghostty/config" }
+      ]
+    },
+    {
+      "id": "hammerspoon",
+      "name": "Hammerspoon",
+      "description": "macOS automation framework (window management, hotkeys)",
+      "os": ["macos"],
+      "actions": [
+        { "type": "link", "src": "Mac/hammerspoon", "dst": "~/.hammerspoon" }
+      ]
+    },
+    {
+      "id": "ssh",
+      "name": "SSH",
+      "description": "SSH client configuration (hosts, keys, options)",
+      "os": ["macos", "linux"],
+      "actions": [
+        { "type": "mkdir", "path": "~/.ssh", "mode": "700" },
+        { "type": "link",  "src": "Mac/ssh/config", "dst": "~/.ssh/config" },
+        {
+          "type": "generate",
+          "dst": "~/.ssh/config.private",
+          "from": "ssh_hosts",
+          "template": "Host {{alias}}\n    HostName {{hostname}}\n    User {{user}}\n    IdentityAgent SSH_AUTH_SOCK\n"
+        }
+      ]
+    },
+    {
+      "id": "mc",
+      "name": "Midnight Commander",
+      "description": "File manager config + mashdark theme",
+      "os": ["macos", "linux"],
+      "actions": [
+        { "type": "link",  "src": "Mac/config/mc", "dst": "~/.config/mc" },
+        { "type": "mkdir", "path": "~/.local/share/mc/skins" },
+        { "type": "link",  "src": "Mac/local/share/mc/skins/mashdark.ini", "dst": "~/.local/share/mc/skins/mashdark.ini" }
+      ]
+    },
+    {
+      "id": "lima",
+      "name": "Lima",
+      "description": "Docker-enabled Linux VM (limactl start)",
+      "os": ["macos"],
+      "actions": [
+        {
+          "type": "shell",
+          "cmd":   "limactl start '{ROOT}/Mac/lima/dockerimg/lima.yaml'",
+          "check": "limactl list 2>/dev/null | grep -q 'dockerimg'"
+        }
+      ]
+    },
+    {
+      "id": "launchagents",
+      "name": "LaunchAgents",
+      "description": "Bitwarden SSH environment variables agent",
+      "os": ["macos"],
+      "actions": [
+        { "type": "link", "src": "Mac/Library/LaunchAgents/bitwarden-ssh-env.plist", "dst": "~/Library/LaunchAgents/bitwarden-ssh-env.plist" },
+        {
+          "type": "shell",
+          "cmd":   "launchctl bootout gui/$(id -u)/bitwarden-ssh-env 2>/dev/null || true; launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/bitwarden-ssh-env.plist",
+          "check": "launchctl list 2>/dev/null | grep -q 'bitwarden-ssh-env'"
+        }
+      ]
+    }
+  ]
+}

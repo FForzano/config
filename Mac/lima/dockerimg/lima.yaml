@@ -27,7 +27,7 @@ images:
 #  arch: "aarch64"
 
 mounts:
-  - location: "/Users/federico"
+  - location: "~"
     writable: true
   - location: "/tmp/lima"
     writable: true

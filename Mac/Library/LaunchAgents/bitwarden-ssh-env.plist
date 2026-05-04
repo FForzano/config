@@ -8,7 +8,7 @@
     <array>
         <string>/bin/zsh</string>
         <string>-c</string>
-        <string>launchctl setenv SSH_AUTH_SOCK "/Users/federico/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock"</string>
+        <string>launchctl setenv SSH_AUTH_SOCK "$HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock"</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
