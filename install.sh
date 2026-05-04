@@ -283,7 +283,13 @@ for i in $(seq 0 $((TOTAL - 1))); do
       shell)
         cmd="$(echo "$action" | jq -r --arg os "$CURRENT_OS" '
           if .cmd | type == "object" then .cmd[$os] // empty else .cmd end')"
-        [ -n "$cmd" ] && action_shell "$cmd"
+        [ -z "$cmd" ] && continue
+        check_cmd="$(echo "$action" | jq -r '.check // empty')"
+        if [ -n "$check_cmd" ] && bash -c "$(expand "$check_cmd")" &>/dev/null; then
+          echo -e "  ${BLUE}↩ already done — skipping${NC}"
+        else
+          action_shell "$cmd"
+        fi
         ;;
       generate)
         dst="$(echo   "$action" | jq -r '.dst')"
