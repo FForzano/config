@@ -85,6 +85,11 @@ component_configured() {
         fi
         ;;
       shell)
+        local os_cmd
+        os_cmd="$(echo "$action" | jq -r --arg os "$CURRENT_OS" '
+          if .cmd | type == "object" then .cmd[$os] // empty else .cmd end')"
+        # If no cmd for this OS, action doesn't apply — skip entirely
+        [ -z "$os_cmd" ] && continue
         check_cmd="$(echo "$action" | jq -r '.check // empty')"
         if [ -n "$check_cmd" ]; then
           has_checkable=true
@@ -276,8 +281,9 @@ for i in $(seq 0 $((TOTAL - 1))); do
         action_mkdir "$path" "$mode"
         ;;
       shell)
-        cmd="$(echo "$action" | jq -r '.cmd')"
-        action_shell "$cmd"
+        cmd="$(echo "$action" | jq -r --arg os "$CURRENT_OS" '
+          if .cmd | type == "object" then .cmd[$os] // empty else .cmd end')"
+        [ -n "$cmd" ] && action_shell "$cmd"
         ;;
       generate)
         dst="$(echo   "$action" | jq -r '.dst')"
