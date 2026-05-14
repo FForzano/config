@@ -22,6 +22,7 @@ The installer walks through each component interactively, checks if it is alread
 | ID | Description | OS |
 |----|-------------|----|
 | `zsh` | Zsh shell config + Powerlevel10k theme | macOS, Linux |
+| `zsh-local` | Machine-specific env vars (`~/.zshrc.local`) from `secrets.json` | macOS, Linux |
 | `ghostty` | Ghostty terminal emulator | macOS |
 | `hammerspoon` | Window management and hotkeys | macOS |
 | `ssh` | SSH client config + private hosts | macOS, Linux |
@@ -45,6 +46,10 @@ cp secrets.example.json secrets.json
 
 ```json
 {
+  "env_vars": [
+    {"name": "AWS_PROFILE", "value": "your-aws-profile"},
+    {"name": "PHP_VERSION", "value": "8.5"}
+  ],
   "ssh_hosts": [
     {
       "alias": "my-server",
@@ -55,7 +60,19 @@ cp secrets.example.json secrets.json
 }
 ```
 
+Each entry in `env_vars` is exported in `~/.zshrc.local`, which is sourced early in the shell startup. Variables with a default in `zshrc` (e.g. `PHP_VERSION`) can be omitted from `secrets.json` to use the default.
+
 Each entry in `ssh_hosts` generates a `Host` block in `~/.ssh/config.private`, which is included by the main SSH config.
+
+### Adding a machine-specific env var
+
+Add an entry to `env_vars` in `secrets.json` and re-run `./install.sh`:
+
+```json
+{"name": "PHP_VERSION", "value": "8.3"}
+```
+
+Update the copy stored in Bitwarden afterwards.
 
 ## Adding a new component
 

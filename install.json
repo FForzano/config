@@ -31,6 +31,20 @@
       ]
     },
     {
+      "id": "zsh-local",
+      "name": "Zsh local",
+      "description": "Machine-specific env vars (~/.zshrc.local) from secrets.json",
+      "os": ["macos", "linux"],
+      "actions": [
+        {
+          "type": "generate",
+          "dst": "~/.zshrc.local",
+          "from": "env_vars",
+          "template": "export {{name}}={{value}}\n"
+        }
+      ]
+    },
+    {
       "id": "ghostty",
       "name": "Ghostty",
       "description": "Terminal emulator configuration",
