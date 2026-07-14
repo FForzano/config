@@ -161,8 +161,11 @@ action_shell() {
 
 # Generates a file by repeating a template for each item in a secrets.json array.
 # Each {{key}} in the template is replaced with the matching field from the item.
+# {{key|prefix}} is conditional: if the item has a non-empty value for `key`,
+# it's replaced with "prefix"+value; otherwise the whole placeholder is dropped
+# (leaving an empty line), which lets a template declare optional directives.
 action_generate() {
-  local from_key item_template dst dst_dir count output block pair key value item
+  local from_key item_template dst dst_dir count output block pair key value item sed_value
 
   dst="$(expand "$1")"
   from_key="$2"
@@ -190,9 +193,17 @@ action_generate() {
       key="${pair%%=*}"
       value="${pair#*=}"
       block="${block//\{\{$key\}\}/$value}"
+      if [ -n "$value" ]; then
+        # escape backslash, & and / so they're safe inside a sed replacement
+        sed_value="${value//\\/\\\\}"
+        sed_value="${sed_value//&/\\&}"
+        sed_value="${sed_value//\//\\/}"
+        block="$(printf '%s' "$block" | sed -E "s/\{\{${key}\|([^}]*)\}\}/\1${sed_value}/g")"
+      fi
     done < <(echo "$item" | jq -r 'to_entries[] | "\(.key)=\(.value)"')
-    # any {{key}} left over belongs to an optional field absent from this item — drop it
-    block="$(echo "$block" | sed -E 's/\{\{[a-zA-Z0-9_]+\}\}//g')"
+    # any {{key}} or {{key|prefix}} left over belongs to an optional field
+    # absent (or empty) in this item — drop it, leaving an empty line
+    block="$(echo "$block" | sed -E 's/\{\{[a-zA-Z0-9_]+\|[^}]*\}\}//g; s/\{\{[a-zA-Z0-9_]+\}\}//g')"
     output="${output}${block}"$'\n'
   done
 
