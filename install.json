@@ -78,13 +78,18 @@
       "description": "SSH client configuration (hosts, keys, options)",
       "os": ["macos", "linux"],
       "actions": [
+        {
+          "type": "shell",
+          "cmd":   { "macos": "brew install cloudflared" },
+          "check": "command -v cloudflared &>/dev/null"
+        },
         { "type": "mkdir", "path": "~/.ssh", "mode": "700" },
         { "type": "link",  "src": "Mac/ssh/config", "dst": "~/.ssh/config" },
         {
           "type": "generate",
           "dst": "~/.ssh/config.private",
           "from": "ssh_hosts",
-          "template": "Host {{alias}}\n    HostName {{hostname}}\n    User {{user}}\n    IdentityAgent SSH_AUTH_SOCK\n"
+          "template": "Host {{alias}}\n    HostName {{hostname}}\n{{proxy_command}}\n    User {{user}}\n    IdentityAgent SSH_AUTH_SOCK\n"
         }
       ]
     },

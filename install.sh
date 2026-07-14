@@ -191,6 +191,8 @@ action_generate() {
       value="${pair#*=}"
       block="${block//\{\{$key\}\}/$value}"
     done < <(echo "$item" | jq -r 'to_entries[] | "\(.key)=\(.value)"')
+    # any {{key}} left over belongs to an optional field absent from this item — drop it
+    block="$(echo "$block" | sed -E 's/\{\{[a-zA-Z0-9_]+\}\}//g')"
     output="${output}${block}"$'\n'
   done
 
