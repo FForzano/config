@@ -89,7 +89,7 @@
           "type": "generate",
           "dst": "~/.ssh/config.private",
           "from": "ssh_hosts",
-          "template": "Host {{alias}}\n    HostName {{hostname}}\n{{proxy_command}}\n    User {{user}}\n    IdentityAgent SSH_AUTH_SOCK\n"
+          "template": "Host {{alias}}\n    HostName {{hostname}}\n{{proxy_command}}\n    User {{user}}\n    IdentityAgent SSH_AUTH_SOCK\n{{preferred_authentications}}\n{{pubkey_authentication}}\n"
         }
       ]
     },
