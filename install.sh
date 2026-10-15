@@ -219,6 +219,21 @@ action_generate() {
   echo -e "  ${GREEN}✓ generated:${NC} $dst ($count items)"
 }
 
+# ─── Args ─────────────────────────────────────────────────────────────────────
+# Usage: ./install.sh [-f|--force] [component-id ...]
+#   --force       re-run components even if already configured
+#   component-id  only process the listed components (e.g. ssh zsh-local)
+FORCE=0
+ONLY=()
+for arg in "$@"; do
+  case "$arg" in
+    -f|--force) FORCE=1 ;;
+    -h|--help)  sed -n '/^# Usage:/,/^#   component-id/p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    -*)         echo "Unknown option: $arg" >&2; exit 1 ;;
+    *)          ONLY+=("$arg") ;;
+  esac
+done
+
 # ─── Main ─────────────────────────────────────────────────────────────────────
 if ! command -v jq &>/dev/null; then
   echo -e "${RED}Error: jq not found. Install it with:${NC}  brew install jq"
@@ -249,6 +264,11 @@ TOTAL="$(jq '.components | length' "$CONFIG_FILE")"
 for i in $(seq 0 $((TOTAL - 1))); do
   component="$(jq -c ".components[$i]" "$CONFIG_FILE")"
 
+  id="$(echo "$component" | jq -r '.id')"
+  if [ ${#ONLY[@]} -gt 0 ] && [[ " ${ONLY[*]} " != *" $id "* ]]; then
+    continue
+  fi
+
   name="$(echo "$component" | jq -r '.name')"
   desc="$(echo "$component" | jq -r '.description')"
 
@@ -264,7 +284,7 @@ for i in $(seq 0 $((TOTAL - 1))); do
     continue
   fi
 
-  if component_configured "$component"; then
+  if [ "$FORCE" -eq 0 ] && component_configured "$component"; then
     echo -e "  ${GREEN}✓ already configured — skipping${NC}"
     ALREADY=$((ALREADY + 1))
     continue
